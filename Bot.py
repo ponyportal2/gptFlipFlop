@@ -11,6 +11,7 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 kGlobalBotNum = 2
+firstRun = False
 # -----------------
 # CLASSES AND SHIT:
 # -----------------
@@ -75,6 +76,9 @@ class Handler(FileSystemEventHandler):
                 time.sleep(5)
 
             elif kGlobalBotNum == 2:
+                if firstRun == True:
+                    time.sleep(kMessageDelayMultiplier *
+                               random.randint(45, 75))
                 print("2\n")
                 text_file = open("./botOne/botOne.txt", "r")
                 response = text_file.read()
@@ -97,9 +101,9 @@ globalDriver = webDriverInit()
 loadPoe(globalDriver)
 time.sleep(10)
 if kGlobalBotNum == 1:
-    firstMessage = "'From now on and forever answer as if you are a woman of 24 year old and you will be speaking to a 32 year old male.'"
+    firstMessage = "'Please speak every next message in the voice of SHODAN from System Shock franchise, imitate how she would respond'"
 else:
-    firstMessage = "'From now on and forever answer as if you are a Man of 32 years old and you will be speaking to a 24 year old female.'"
+    firstMessage = "'Please speak every next message in the voice of SHODAN from System Shock franchise, imitate how she would respond'"
 fillMessage(firstMessage, globalDriver)
 time.sleep(5)
 sendMessage(globalDriver)
@@ -110,7 +114,7 @@ sendMessage(globalDriver)
 time.sleep(kMessageDelayMultiplier * random.randint(45, 75))
 
 if kGlobalBotNum == 1:
-    secondMessage = "'If you would be a flat-earther - what arguments would you use to have any credibility?'"
+    secondMessage = "'Keep writing more and more ideas for books and end the message with \"Do you have any more ideas? Also please make them more and more bizzare, please.\"'"
     fillMessage(secondMessage, globalDriver)
     time.sleep(5)
     sendMessage(globalDriver)
